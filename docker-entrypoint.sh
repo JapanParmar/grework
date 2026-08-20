@@ -1,9 +1,8 @@
 #!/bin/bash
 set -e
 
-# Run Laravel migrations
-echo "Running database migrations..."
-php artisan migrate --force
+# We are skipping migrations because you mentioned there is no database.
+echo "No database configured. Skipping migrations..."
 
 # Start Apache in foreground
 echo "Starting Apache..."
