@@ -132,7 +132,7 @@
             @foreach($products as $prod)
             <div x-show="matchProduct($el)"
                  data-name="{{ $prod['name'] }}"
-                 data-code="{{ $prod['sizes'][0]['code'] }}"
+                 data-code="{{ !empty($prod['sizes']) ? $prod['sizes'][0]['code'] : '' }}"
                  data-category="{{ $prod['category_id'] }}"
                  data-sizes="{{ implode('|', array_column($prod['sizes'], 'size')) }}"
                  data-finishes="{{ isset($prod['finishes']) ? implode('|', $prod['finishes']) : '' }}"
@@ -141,8 +141,9 @@
                  
                 <div>
                     <!-- Product Image container -->
-                    <div class="relative aspect-video bg-slate-50 border-b border-slate-100 flex items-center justify-center overflow-hidden">
-                        <img src="{{ $prod['image'] }}" alt="{{ $prod['name'] }}" class="w-full h-full object-cover">
+                    <div x-data="{ loaded: false }" class="relative aspect-video bg-slate-50 border-b border-slate-100 flex items-center justify-center overflow-hidden">
+                        <div x-show="!loaded" class="absolute inset-0 skeleton-shimmer"></div>
+                        <img src="{{ $prod['image'] }}" alt="{{ $prod['name'] }}" @load="loaded = true" :class="loaded ? 'opacity-100' : 'opacity-0'" class="w-full h-full object-cover transition-opacity duration-300">
                         
                         <!-- Warranty Badge Overlay -->
                         <div class="absolute top-3 left-3 bg-brand-navy/90 backdrop-blur text-white text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded shadow-sm">
@@ -153,7 +154,7 @@
                     <!-- Details -->
                     <div class="p-6">
                         <span class="text-[10px] text-brand-red font-bold uppercase tracking-wider block mb-1">
-                            {{ $categories[$prod['category_id']]['name'] }} &bull; {{ $prod['subcategory'] }}
+                            {{ isset($categories[$prod['category_id']]) ? $categories[$prod['category_id']]['name'] : 'Uncategorized' }} &bull; {{ $prod['subcategory'] }}
                         </span>
                         
                         <h3 class="font-extrabold text-brand-navy text-base leading-tight mb-2 hover:text-brand-red transition-brand">
@@ -195,7 +196,13 @@
                 <div class="px-6 pb-6 pt-3 border-t border-slate-50 flex items-center justify-between">
                     <div>
                         <span class="block text-[9px] text-slate-400 uppercase font-bold">MRP Range</span>
-                        <span class="text-sm font-extrabold text-brand-navy">₹{{ $prod['sizes'][0]['mrp'] }} - ₹{{ end($prod['sizes'])['mrp'] }}</span>
+                        <span class="text-sm font-extrabold text-brand-navy">
+                            @if(!empty($prod['sizes']))
+                                ₹{{ $prod['sizes'][0]['mrp'] }} - ₹{{ end($prod['sizes'])['mrp'] }}
+                            @else
+                                Contact for Price
+                            @endif
+                        </span>
                     </div>
                     
                     <a href="{{ route('products.show', $prod['slug']) }}" class="inline-flex items-center gap-1 bg-brand-navy hover:bg-brand-navy-dark text-white font-bold py-2 px-4 rounded-lg text-xs transition-brand">

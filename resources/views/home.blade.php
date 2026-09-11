@@ -205,15 +205,23 @@
                             {{ $prod['tagline'] }}
                         </p>
                         
+                        @if(!empty($prod['sizes']))
                         <div class="text-[10px] text-brand-gray-dark flex flex-wrap gap-1.5 mb-2">
                             <span class="bg-slate-100 px-2 py-0.5 rounded font-bold uppercase tracking-wide">GW-Code</span>
                             <span class="bg-slate-100 px-2 py-0.5 rounded">{{ $prod['sizes'][0]['code'] }}</span>
                         </div>
+                        @endif
                     </div>
                 </div>
                 
                 <div class="px-5 pb-5 pt-3 border-t border-slate-50 flex items-center justify-between">
-                    <span class="text-xs text-brand-red font-bold">MRP: ₹{{ $prod['sizes'][0]['mrp'] }} - ₹{{ end($prod['sizes'])['mrp'] }}</span>
+                    <span class="text-xs text-brand-red font-bold">
+                        @if(!empty($prod['sizes']))
+                            MRP: ₹{{ $prod['sizes'][0]['mrp'] }} - ₹{{ end($prod['sizes'])['mrp'] }}
+                        @else
+                            Contact for Price
+                        @endif
+                    </span>
                     <a href="{{ route('products.show', $prod['slug']) }}" class="text-xs font-bold text-brand-navy hover:text-brand-red transition-brand">View Details &rarr;</a>
                 </div>
             </div>

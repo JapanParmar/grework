@@ -52,9 +52,10 @@
             
             <!-- Gallery Panel (lg:col-span-5) -->
             <div class="lg:col-span-5 space-y-4">
-                <!-- Large Display -->
-                <div class="aspect-square bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden shadow-sm flex items-center justify-center p-6 relative">
-                    <img :src="activeImage" alt="{{ $product['name'] }}" class="w-full h-full object-cover rounded-2xl transition-all duration-300">
+                <!-- Large Display with Skeleton Loader -->
+                <div x-data="{ loaded: false }" class="aspect-square bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden shadow-sm flex items-center justify-center p-6 relative">
+                    <div x-show="!loaded" class="absolute inset-0 skeleton-shimmer"></div>
+                    <img :src="activeImage" alt="{{ $product['name'] }}" @load="loaded = true" :class="loaded ? 'opacity-100' : 'opacity-0'" class="w-full h-full object-cover rounded-2xl transition-all duration-300">
                     
                     <!-- Warranty Badge -->
                     <div class="absolute top-4 left-4 bg-brand-navy/95 backdrop-blur text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-sm border border-white/10">
@@ -262,7 +263,13 @@
                     </div>
                     
                     <div class="px-6 pb-6 pt-3 border-t border-slate-50 flex items-center justify-between">
-                        <span class="text-xs text-brand-red font-bold">MRP: ₹{{ $rel['sizes'][0]['mrp'] }}+</span>
+                        <span class="text-xs text-brand-red font-bold">
+                            @if(!empty($rel['sizes']))
+                                MRP: ₹{{ $rel['sizes'][0]['mrp'] }}+
+                            @else
+                                Contact for Price
+                            @endif
+                        </span>
                         <a href="{{ route('products.show', $rel['slug']) }}" class="text-xs font-bold text-brand-navy hover:text-brand-red transition-brand">Details &rarr;</a>
                     </div>
                 </div>

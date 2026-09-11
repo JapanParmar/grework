@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\Services\ProductRepository;
 
 class PageController extends Controller
 {
     private function getCatalog()
     {
-        return config('products');
+        return ProductRepository::getCatalog();
     }
 
     public function home()
     {
         $catalog = $this->getCatalog();
+        $allProducts = collect($catalog['products']);
         
-        $featuredProducts = collect($catalog['products'])
-            ->only(['platinum-channel', 'glass-pullout-2d', 'ss-3d-hinges', 'wardrobe-lifter'])
-            ->all();
+        // Take the first 4 products as featured — always works regardless of slug names
+        $featuredProducts = $allProducts->take(4)->all();
 
         return view('home', [
             'categories' => $catalog['categories'],
@@ -52,12 +52,14 @@ class PageController extends Controller
         $allSizes = [];
         $allFinishes = [];
         foreach ($allProducts as $product) {
-            if (isset($product['sizes'])) {
+            if (isset($product['sizes']) && is_array($product['sizes'])) {
                 foreach ($product['sizes'] as $sizeItem) {
-                    $allSizes[] = $sizeItem['size'];
+                    if (isset($sizeItem['size'])) {
+                        $allSizes[] = $sizeItem['size'];
+                    }
                 }
             }
-            if (isset($product['finishes'])) {
+            if (isset($product['finishes']) && is_array($product['finishes'])) {
                 foreach ($product['finishes'] as $finish) {
                     $allFinishes[] = $finish;
                 }
@@ -79,18 +81,22 @@ class PageController extends Controller
     public function productDetail($slug)
     {
         $catalog = $this->getCatalog();
-        $product = collect($catalog['products'])->firstWhere('slug', $slug);
+        $product = ProductRepository::getProductBySlug($slug);
 
         if (!$product) {
             abort(404);
         }
 
-        $category = $catalog['categories'][$product['category_id']];
+        $categoryId = $product['category_id'] ?? '';
+        $category = $catalog['categories'][$categoryId] ?? [
+            'name' => 'Hardware Solution',
+            'id' => $categoryId
+        ];
         
         // Get related products (in same category, excluding current product)
         $relatedProducts = collect($catalog['products'])
-            ->where('category_id', $product['category_id'])
-            ->where('id', '!=', $product['id'])
+            ->where('category_id', $categoryId)
+            ->where('slug', '!=', $product['slug'])
             ->take(3)
             ->all();
 
@@ -128,9 +134,7 @@ class PageController extends Controller
             'enquiry_type' => 'required|string'
         ]);
 
-        // In a real application, we would save this to the database or send an email.
-        // For this B2B catalogue website, we will store the success message in the session 
-        // and return a premium confirmation view.
+        $itemsArray = json_decode($request->items, true) ?? [];
         
         $enquiryData = [
             'id' => 'GWQ-' . rand(100000, 999999),
@@ -140,9 +144,12 @@ class PageController extends Controller
             'state' => $request->state,
             'message' => $request->message,
             'enquiry_type' => $request->enquiry_type,
-            'items' => json_decode($request->items, true),
+            'items' => $itemsArray,
+            'status' => 'Pending',
             'created_at' => now()->format('d M Y, h:i A')
         ];
+
+        ProductRepository::saveEnquiry($enquiryData);
 
         return view('enquiry-success', ['enquiry' => $enquiryData]);
     }

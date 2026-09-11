@@ -71,3 +71,28 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #94A3B8;
 }
+
+/* ─── Skeleton Loading ─────────────────────────── */
+.skeleton-shimmer {
+    background: linear-gradient(90deg, #f1f5f9 25%, #cbd5e1 37%, #f1f5f9 63%);
+    background-size: 200% 100%;
+    animation: skeleton-wave 1.5s infinite linear;
+}
+
+/* Dark variant used inside the admin panel */
+.skeleton-shimmer-dark {
+    background: linear-gradient(90deg, #1e293b 25%, #334155 37%, #1e293b 63%);
+    background-size: 200% 100%;
+    animation: skeleton-wave 1.6s infinite linear;
+}
+
+@keyframes skeleton-wave {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+}
+
+/* ─── Admin Dark Scrollbar ─────────────────────── */
+.admin-scroll::-webkit-scrollbar          { width: 4px; height: 4px; }
+.admin-scroll::-webkit-scrollbar-track   { background: #0f172a; }
+.admin-scroll::-webkit-scrollbar-thumb   { background: #334155; border-radius: 2px; }
+.admin-scroll::-webkit-scrollbar-thumb:hover { background: #475569; }

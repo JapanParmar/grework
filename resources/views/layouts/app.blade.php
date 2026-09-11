@@ -19,6 +19,17 @@
 
     <style>
         [x-cloak] { display: none !important; }
+
+        .skeleton-shimmer {
+            background: linear-gradient(90deg, #f1f5f9 25%, #cbd5e1 37%, #f1f5f9 63%);
+            background-size: 200% 100%;
+            animation: skeleton-wave 1.5s infinite linear;
+        }
+
+        @keyframes skeleton-wave {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
     </style>
     @yield('styles')
 </head>
@@ -72,40 +83,17 @@
                              x-transition:leave-end="opacity-0 scale-95 -translate-y-2"
                              x-cloak>
                             <div class="col-span-2 grid grid-cols-2 gap-4">
+                                @php $catChunks = collect($navCategories ?? [])->chunk(max(1, ceil(count($navCategories ?? []) / 2))); @endphp
+                                @foreach($catChunks as $chunk)
                                 <div class="space-y-1">
-                                    <div class="text-xs font-bold uppercase tracking-wider text-brand-red mb-2">Drawer Systems</div>
-                                    <a href="{{ route('products.category', 'drawer-channel') }}" class="block p-2 rounded-lg hover:bg-slate-50 transition-brand">
-                                        <span class="block text-sm font-semibold text-brand-navy">Drawer Channel Solution</span>
-                                        <span class="block text-[11px] text-slate-500">Platinum, Gold, Undermount Quadro</span>
+                                    @foreach($chunk as $navSlug => $navCat)
+                                    <a href="{{ route('products.category', $navSlug) }}" class="block p-2 rounded-lg hover:bg-slate-50 transition-brand">
+                                        <span class="block text-sm font-semibold text-brand-navy">{{ $navCat['name'] }}</span>
+                                        <span class="block text-[11px] text-slate-500">{{ Str::limit($navCat['description'], 50) }}</span>
                                     </a>
-                                    <a href="{{ route('products.category', 'auto-hinges') }}" class="block p-2 rounded-lg hover:bg-slate-50 transition-brand">
-                                        <span class="block text-sm font-semibold text-brand-navy">Auto Hinges Solution</span>
-                                        <span class="block text-[11px] text-slate-500">2D & 3D Hydraulic soft-close hinges</span>
-                                    </a>
-                                    <a href="{{ route('products.category', 'wardrobe-fitting') }}" class="block p-2 rounded-lg hover:bg-slate-50 transition-brand">
-                                        <span class="block text-sm font-semibold text-brand-navy">Wardrobe Fitting Solution</span>
-                                        <span class="block text-[11px] text-slate-500">Slim Track sliding fittings</span>
-                                    </a>
+                                    @endforeach
                                 </div>
-                                <div class="space-y-1">
-                                    <div class="text-xs font-bold uppercase tracking-wider text-brand-red mb-2">Kitchen & Home</div>
-                                    <a href="{{ route('products.category', 'modern-kitchen') }}" class="block p-2 rounded-lg hover:bg-slate-50 transition-brand">
-                                        <span class="block text-sm font-semibold text-brand-navy">Modern Kitchen Solution</span>
-                                        <span class="block text-[11px] text-slate-500">Pantry tall units, magic corner, shutters</span>
-                                    </a>
-                                    <a href="{{ route('products.category', 'wardrobe-solution') }}" class="block p-2 rounded-lg hover:bg-slate-50 transition-brand">
-                                        <span class="block text-sm font-semibold text-brand-navy">Wardrobe Accessories</span>
-                                        <span class="block text-[11px] text-slate-500">Lifter, jewellery tray, rotation shoe rack</span>
-                                    </a>
-                                    <a href="{{ route('products.category', 'hydraulic-folding') }}" class="block p-2 rounded-lg hover:bg-slate-50 transition-brand">
-                                        <span class="block text-sm font-semibold text-brand-navy">Hydraulic Folding Solution</span>
-                                        <span class="block text-[11px] text-slate-500">Gas pumps, bed lift-up fittings</span>
-                                    </a>
-                                    <a href="{{ route('products.category', 'locking-solution') }}" class="block p-2 rounded-lg hover:bg-slate-50 transition-brand">
-                                        <span class="block text-sm font-semibold text-brand-navy">Locking Solution</span>
-                                        <span class="block text-[11px] text-slate-500">Brass cylinder drawer & cupboard locks</span>
-                                    </a>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="bg-gradient-to-br from-brand-navy to-brand-navy-dark text-white rounded-xl p-5 flex flex-col justify-between">
                                 <div>
@@ -190,13 +178,9 @@
                         <svg class="w-4 h-4 transition-transform" :class="expanded ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="pl-6 space-y-2 mt-1" x-show="expanded" x-cloak>
-                        <a href="{{ route('products.category', 'drawer-channel') }}" class="block py-1.5 text-xs text-brand-gray-dark hover:text-brand-red">Drawer Channel Solution</a>
-                        <a href="{{ route('products.category', 'modern-kitchen') }}" class="block py-1.5 text-xs text-brand-gray-dark hover:text-brand-red">Modern Kitchen Solution</a>
-                        <a href="{{ route('products.category', 'auto-hinges') }}" class="block py-1.5 text-xs text-brand-gray-dark hover:text-brand-red">Auto Hinges Solution</a>
-                        <a href="{{ route('products.category', 'wardrobe-solution') }}" class="block py-1.5 text-xs text-brand-gray-dark hover:text-brand-red">Wardrobe Solution</a>
-                        <a href="{{ route('products.category', 'hydraulic-folding') }}" class="block py-1.5 text-xs text-brand-gray-dark hover:text-brand-red">Hydraulic Folding Solution</a>
-                        <a href="{{ route('products.category', 'locking-solution') }}" class="block py-1.5 text-xs text-brand-gray-dark hover:text-brand-red">Locking Solution</a>
-                        <a href="{{ route('products.category', 'wardrobe-fitting') }}" class="block py-1.5 text-xs text-brand-gray-dark hover:text-brand-red">Wardrobe Fitting Solution</a>
+                        @foreach($navCategories ?? [] as $navSlug => $navCat)
+                        <a href="{{ route('products.category', $navSlug) }}" class="block py-1.5 text-xs text-brand-gray-dark hover:text-brand-red">{{ $navCat['name'] }}</a>
+                        @endforeach
                     </div>
                 </div>
 
@@ -272,15 +256,13 @@
                     </ul>
                 </div>
 
-                <!-- Categories -->
+                <!-- Categories (Dynamic from DB) -->
                 <div>
                     <h4 class="font-semibold text-white text-sm uppercase tracking-wider mb-6">Product Range</h4>
                     <ul class="space-y-3.5 text-sm">
-                        <li><a href="{{ route('products.category', 'drawer-channel') }}" class="hover:text-white transition-brand">Drawer Channel Solution</a></li>
-                        <li><a href="{{ route('products.category', 'modern-kitchen') }}" class="hover:text-white transition-brand">Modern Kitchen Solution</a></li>
-                        <li><a href="{{ route('products.category', 'auto-hinges') }}" class="hover:text-white transition-brand">Auto Hinges Solution</a></li>
-                        <li><a href="{{ route('products.category', 'wardrobe-solution') }}" class="hover:text-white transition-brand">Wardrobe Organizers</a></li>
-                        <li><a href="{{ route('products.category', 'hydraulic-folding') }}" class="hover:text-white transition-brand">Folding & Bed Fittings</a></li>
+                        @foreach($navCategories ?? [] as $navSlug => $navCat)
+                        <li><a href="{{ route('products.category', $navSlug) }}" class="hover:text-white transition-brand">{{ $navCat['name'] }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
 
