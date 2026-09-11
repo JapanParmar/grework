@@ -1,279 +1,515 @@
 @extends('layouts.app')
 
-@section('title', 'Grewok – Fit For Forever | Always Best in Quality | Premium Furniture Hardware')
+@section('title', 'Grewok – Fit For Forever | Premier Architectural Furniture Hardware')
 
 @section('content')
-<!-- Hero Section -->
-<section class="relative bg-brand-navy overflow-hidden">
-    <!-- Visual background with overlay -->
-    <div class="absolute inset-0 z-0">
-        <img src="/images/hero-kitchen.png" alt="Luxury Modern Kitchen Hardware" class="w-full h-full object-cover opacity-35 mix-blend-luminosity">
-        <div class="absolute inset-0 bg-gradient-to-r from-brand-navy-dark via-brand-navy/95 to-transparent"></div>
-    </div>
-    
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36 flex flex-col justify-center min-h-[580px]">
-        <div class="max-w-2xl">
-            <!-- Brand Badge -->
-            <div class="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/20 px-3.5 py-1.5 rounded-full text-xs font-bold text-brand-red uppercase tracking-widest mb-6 animate-fade-in-up">
-                <span>ESTD 2015</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-red"></span>
-                <span>Premium Quality Hardware</span>
-            </div>
-            
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none mb-6">
-                Grewok Hardware<br>
-                <span class="text-brand-red">Fit For Forever</span>
-            </h1>
-            
-            <p class="text-lg text-slate-300 font-medium mb-10 leading-relaxed">
-                Always Best in Quality. Premium architectural furniture fittings and modular kitchen solutions engineered to elevate modern Indian homes.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="{{ route('products.all') }}" class="inline-flex items-center justify-center gap-2.5 bg-brand-red hover:bg-brand-red-dark text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-brand-red/25 transition-brand text-sm">
-                    <span>Explore Products</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-                <a href="{{ route('catalogue') }}" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold py-4 px-8 rounded-xl backdrop-blur-sm transition-brand text-sm">
-                    <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    <span>Download Catalogue</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
 
-<!-- Stats / About Teaser Section -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <div class="text-xs uppercase font-extrabold tracking-widest text-brand-red mb-3">Company Profile</div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mb-6 leading-tight">
-                    Trusted Furniture Hardware Since 2015
-                </h2>
-                <p class="text-slate-600 leading-relaxed mb-6">
-                    Established in 2015, Grewok has grown into a trusted, premium brand in the furniture hardware industry. We are dedicated to providing builders, architects, and homeowners with high-end, heavy-duty hardware that combines luxurious aesthetic values with flawless mechanics.
-                </p>
-                <p class="text-slate-600 leading-relaxed mb-8">
-                    Following the rigorous quality benchmarks similar to European giants like Hettich, Blum, and Häfele, we custom-engineer our fittings to handle the unique temperature, humidity, and load requirements of modular kitchens and wardrobes in Indian homes.
-                </p>
-                <a href="{{ route('about') }}" class="inline-flex items-center gap-2 text-brand-red font-bold hover:text-brand-navy transition-brand text-sm group">
-                    <span>Learn More About Grewok</span>
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
-            </div>
-            
-            <div class="grid grid-cols-2 gap-6">
-                <div class="p-8 bg-slate-50 border border-slate-100 rounded-2xl text-center shadow-sm">
-                    <div class="text-4xl font-extrabold text-brand-navy mb-2">2015</div>
-                    <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Established Year</div>
-                </div>
-                <div class="p-8 bg-slate-50 border border-slate-100 rounded-2xl text-center shadow-sm">
-                    <div class="text-4xl font-extrabold text-brand-navy mb-2">10 Years</div>
-                    <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Product Warranty</div>
-                </div>
-                <div class="p-8 bg-slate-50 border border-slate-100 rounded-2xl text-center shadow-sm col-span-2">
-                    <div class="text-4xl font-extrabold text-brand-red mb-2">100%</div>
-                    <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Virgin Raw Materials & Testing Certification</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Product Categories Grid Section -->
-<section class="py-20 bg-brand-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="text-xs uppercase font-extrabold tracking-widest text-brand-red">High-End Range</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mt-3 mb-4">Featured Product Categories</h2>
-            <p class="text-slate-500 text-sm">Explore our engineered solutions designed to bring motion, structure, and security to your living spaces.</p>
-        </div>
+    <!-- ── 1. Hero Section for First-Time Visitors (Floating Constellation on White Marble) ── -->
+    <section class="relative pt-6 pb-16 text-center select-none overflow-hidden">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($categories as $slug => $cat)
-            <div class="group bg-white rounded-2xl border border-slate-100 hover:border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-brand flex flex-col justify-between">
-                <div class="p-6">
-                    <div class="w-12 h-12 rounded-xl bg-brand-navy/5 text-brand-navy flex items-center justify-center mb-6 group-hover:bg-brand-red group-hover:text-white transition-brand">
-                        {!! $cat['icon'] !!}
-                    </div>
-                    <h3 class="text-lg font-bold text-brand-navy mb-2 group-hover:text-brand-red transition-brand">
-                        {{ $cat['name'] }}
-                    </h3>
-                    <p class="text-xs text-slate-500 leading-relaxed mb-6">
-                        {{ Str::limit($cat['description'], 90) }}
-                    </p>
+        <!-- Credibility Badge for First-Time Visitors -->
+        <div class="inline-flex items-center gap-2 bg-[#ffffff] border border-[#d1d5db] rounded-full px-4 py-1.5 shadow-shop-sm mb-6">
+            <span class="w-2 h-2 rounded-full bg-[#5433eb] animate-pulse"></span>
+            <span class="text-[12px] font-bold text-black uppercase tracking-wider">
+                ESTD 2015 &bull; PREMIER ARCHITECTURAL HARDWARE &bull; FIT FOR FOREVER
+            </span>
+        </div>
+
+        <!-- High-Impact Main Headline -->
+        <div class="max-w-4xl mx-auto mb-6">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight leading-tight mb-4">
+                Engineered For Forever.<br>
+                <span class="text-[#5433eb]">Architectural Hardware</span> For Modern Homes.
+            </h1>
+            <p class="text-[16px] sm:text-[18px] text-[#4f4c4a] track-tight-16 max-w-2xl mx-auto font-normal leading-relaxed">
+                Specializing in whisper-quiet soft-close drawer channels, 3D hydraulic auto-hinges, luxury wardrobe organizers, and kitchen corner systems. Built with European mechanical precision for Indian modular homes.
+            </p>
+        </div>
+
+        <!-- First-Time Visitor Action Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+            <a href="{{ route('products.all') }}" 
+               class="h-12 px-7 rounded-full bg-[#5433eb] text-white text-[14px] font-bold shadow-violet-submit hover:opacity-95 transition-shop flex items-center justify-center gap-2">
+                <span>Explore Hardware Collections</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+
+            <a href="{{ route('catalogue') }}" 
+               class="h-12 px-7 rounded-full bg-[#ffffff] border border-[#cccccc] hover:border-black text-black text-[14px] font-bold shadow-shop-sm hover:bg-[#f2f4f5] transition-shop flex items-center justify-center gap-2">
+                <svg class="w-4 h-4 text-[#5433eb]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                <span>Download 2026 PDF Catalogue</span>
+            </a>
+
+            <a href="{{ route('contact', ['type' => 'dealer']) }}" 
+               class="h-12 px-6 rounded-full bg-[#ffffff] border border-[#ebebeb] text-[#4f4c4a] hover:text-black text-[13px] font-bold shadow-shop-sm hover:bg-[#f2f4f5] transition-shop flex items-center justify-center">
+                <span>Dealer & Architect Wholesale</span>
+            </a>
+        </div>
+
+        <!-- ── Floating Product Constellation (Overlapping 28px cards showcasing real hardware solutions) ── -->
+        <div class="relative w-full max-w-4xl mx-auto h-[260px] sm:h-[300px] mb-8 flex items-center justify-center">
+            
+            <!-- Floating Card 1: Telescopic Channel -->
+            <div class="absolute -left-2 sm:left-4 top-8 sm:top-4 w-44 sm:w-56 bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-3 hover-float transition-shop cursor-pointer z-10 hidden xs:block text-left">
+                <div class="w-full aspect-square rounded-inner-shop bg-[#f2f4f5] border border-[#ebebeb] overflow-hidden relative">
+                    <img src="/images/products/drawer-channel.png" alt="Drawer Channels" class="w-full h-full object-cover">
+                    <span class="absolute top-2 left-2 bg-black text-white text-[9px] font-bold px-2 py-0.5 rounded-full">45 kg Load</span>
                 </div>
-                <div class="px-6 pb-6 pt-2 border-t border-slate-50">
-                    <a href="{{ route('products.category', $slug) }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-navy group-hover:text-brand-red transition-brand">
-                        <span>Browse Catalog</span>
-                        <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7-7"></path></svg>
+                <div class="pt-2.5 px-1 pb-0.5">
+                    <div class="text-[14px] font-bold text-black track-tight-14 truncate">Quadro Soft-Close Slide</div>
+                    <div class="text-[11px] text-[#4f4c4a] font-medium">GW-Code: GW-QC-450</div>
+                    <div class="flex items-center justify-between mt-1">
+                        <span class="text-[12px] font-extrabold text-black">MRP ₹850</span>
+                        <div class="flex text-amber-500 text-[10px]">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Card 2: Center Hero Elevated Corner Pantry -->
+            <div class="relative w-52 sm:w-64 bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-lg p-3.5 hover-float transition-shop cursor-pointer z-20 text-left">
+                <div class="w-full aspect-square rounded-inner-shop bg-[#f2f4f5] border border-[#ebebeb] overflow-hidden relative">
+                    <img src="/images/hero-kitchen.png" alt="Corner Pantry System" class="w-full h-full object-cover">
+                    <span class="absolute top-2.5 left-2.5 bg-[#5433eb] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-sm">Grade 304 SS</span>
+                </div>
+                <div class="pt-3 px-1 pb-1">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[15px] font-extrabold text-black track-tight-14 truncate">Corner Swing Magic Pantry</span>
+                        <span class="text-[13px] font-black text-black">₹4,200</span>
+                    </div>
+                    <p class="text-[11px] text-[#4f4c4a] mt-0.5 font-medium">Liquid silicone damping &bull; 60 kg load</p>
+                    <div class="flex items-center gap-1.5 text-[11px] text-[#333333] mt-1.5 font-semibold">
+                        <div class="flex text-amber-500 text-[12px]">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <span>4.95 &bull; 128 installations</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Card 3: 3D Auto Hinge / Wardrobe System -->
+            <div class="absolute -right-2 sm:right-6 top-6 sm:top-2 w-44 sm:w-56 bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-3 hover-float transition-shop cursor-pointer z-10 hidden sm:block text-left">
+                <div class="w-full aspect-square rounded-inner-shop bg-[#f2f4f5] border border-[#ebebeb] overflow-hidden relative">
+                    <img src="/images/products/wardrobe-organizer.png" alt="Wardrobe Organizers" class="w-full h-full object-cover">
+                    <span class="absolute top-2 left-2 bg-black text-white text-[9px] font-bold px-2 py-0.5 rounded-full">Italian Style</span>
+                </div>
+                <div class="pt-2.5 px-1 pb-0.5">
+                    <div class="text-[14px] font-bold text-black track-tight-14 truncate">Rotating Shoe & Tray Rack</div>
+                    <div class="text-[11px] text-[#4f4c4a] font-medium">360° Smooth Rotation</div>
+                    <div class="flex items-center justify-between mt-1">
+                        <span class="text-[12px] font-extrabold text-black">₹3,150</span>
+                        <div class="flex text-amber-500 text-[10px]">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Search Input with Violet Submit Button ── -->
+        <div class="max-w-2xl mx-auto mb-8 px-4">
+            <form action="{{ route('products.all') }}" method="GET" class="relative flex items-center bg-[#ffffff] rounded-full border border-[#cccccc] shadow-shop-sm pl-6 pr-1.5 py-1.5">
+                <input type="text" 
+                       name="q" 
+                       value="{{ request('q') }}"
+                       placeholder="Search by product name, item code (e.g. GW-01), or hardware category..." 
+                       class="w-full bg-transparent border-0 outline-none text-[15px] text-black font-medium placeholder-[#666666] track-tight-16 pr-12">
+                
+                <!-- Circular Violet Submit Button -->
+                <button type="submit" 
+                        class="w-12 h-12 rounded-full bg-[#5433eb] text-white flex items-center justify-center flex-shrink-0 shadow-violet-submit hover:opacity-95 transition-shop"
+                        title="Search Hardware">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- ── Category Quick Access Chips ── -->
+        <div class="flex items-center justify-center gap-3 flex-wrap px-2">
+            @php
+                $pillColors = ['#5433eb', '#059669', '#2563eb', '#d97706', '#db2777', '#7c3aed'];
+                $pillIdx = 0;
+            @endphp
+            @foreach($categories as $slug => $cat)
+                @php 
+                    $activeColor = $pillColors[$pillIdx % count($pillColors)];
+                    $pillIdx++;
+                @endphp
+                <a href="{{ route('products.category', $slug) }}" 
+                   class="inline-flex items-center gap-2.5 bg-[#ffffff] border border-[#d1d5db] rounded-full pl-3 pr-4 py-2 shadow-shop-sm hover-float transition-shop">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background-color: {{ $activeColor }};"></span>
+                    <span class="text-[14px] font-bold text-black track-tight-16">
+                        {{ $cat['name'] }}
+                    </span>
+                </a>
+            @endforeach
+        </div>
+
+    </section>
+
+    <!-- ── 2. First-Time Visitor Trust & Credentials Bar (4 Pillow-Soft Cards) ── -->
+    <section class="my-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <!-- Metric 1 -->
+            <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-6 flex items-start gap-4 hover-float transition-shop">
+                <div class="w-12 h-12 rounded-full bg-[#f2f4f5] border border-[#ebebeb] flex items-center justify-center flex-shrink-0 text-[#5433eb]">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <div>
+                    <div class="text-2xl font-black text-black leading-tight">10 Years</div>
+                    <div class="text-[13px] font-bold text-black mt-0.5">Replacement Warranty</div>
+                    <p class="text-[11px] text-[#4f4c4a] mt-1 font-normal leading-normal">On Grade 304 SS auto-hinges and heavy-duty slide channels.</p>
+                </div>
+            </div>
+
+            <!-- Metric 2 -->
+            <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-6 flex items-start gap-4 hover-float transition-shop">
+                <div class="w-12 h-12 rounded-full bg-[#f2f4f5] border border-[#ebebeb] flex items-center justify-center flex-shrink-0 text-[#5433eb]">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <div>
+                    <div class="text-2xl font-black text-black leading-tight">80k+ Cycles</div>
+                    <div class="text-[13px] font-bold text-black mt-0.5">Endurance Certified</div>
+                    <p class="text-[11px] text-[#4f4c4a] mt-1 font-normal leading-normal">Precision fatigue-tested to European DIN mechanical standards.</p>
+                </div>
+            </div>
+
+            <!-- Metric 3 -->
+            <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-6 flex items-start gap-4 hover-float transition-shop">
+                <div class="w-12 h-12 rounded-full bg-[#f2f4f5] border border-[#ebebeb] flex items-center justify-center flex-shrink-0 text-[#5433eb]">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
+                </div>
+                <div>
+                    <div class="text-2xl font-black text-black leading-tight">100% Virgin</div>
+                    <div class="text-[13px] font-bold text-black mt-0.5">Heavy Gauge Metal</div>
+                    <p class="text-[11px] text-[#4f4c4a] mt-1 font-normal leading-normal">Zero scrap metal. Certified cold-rolled virgin alloy steel.</p>
+                </div>
+            </div>
+
+            <!-- Metric 4 -->
+            <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-6 flex items-start gap-4 hover-float transition-shop">
+                <div class="w-12 h-12 rounded-full bg-[#f2f4f5] border border-[#ebebeb] flex items-center justify-center flex-shrink-0 text-[#5433eb]">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                </div>
+                <div>
+                    <div class="text-2xl font-black text-black leading-tight">7 States</div>
+                    <div class="text-[13px] font-bold text-black mt-0.5">Active Dealer Network</div>
+                    <p class="text-[11px] text-[#4f4c4a] mt-1 font-normal leading-normal">Gujarat, Maharashtra, Rajasthan, MP, Karnataka & beyond.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── 3. Category Visual Showcase (All 5 Core Hardware Ranges) ── -->
+    <section class="my-20">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#4f4c4a] block mb-1">Architectural Catalogue</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-black track-tight-20">Explore By Hardware Solution</h2>
+            </div>
+            <a href="{{ route('products.all') }}" class="hidden sm:inline-flex items-center gap-1 text-[13px] font-bold text-[#5433eb] hover:underline">
+                <span>View Full Catalog</span>
+                <span>&rarr;</span>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($categories as $slug => $cat)
+            <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-4 flex flex-col justify-between hover-float transition-shop group">
+                <div>
+                    <!-- Category Image with 20px inner radius -->
+                    <div class="w-full h-48 rounded-inner-shop bg-[#f2f4f5] border border-[#ebebeb] overflow-hidden relative mb-4">
+                        <img src="{{ $cat['image'] }}" alt="{{ $cat['name'] }}" class="w-full h-full object-cover group-hover:scale-105 transition-shop">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 text-white font-bold text-[14px]">
+                            {{ $cat['name'] }}
+                        </div>
+                    </div>
+
+                    <div class="px-2">
+                        <p class="text-[13px] text-[#4f4c4a] leading-relaxed mb-4 font-normal">
+                            {{ $cat['description'] }}
+                        </p>
+
+                        <!-- Subcategories Pills -->
+                        <div class="flex items-center gap-1.5 flex-wrap mb-4">
+                            @foreach(array_slice($cat['subcategories'] ?? [], 0, 3) as $subcat)
+                            <span class="text-[10px] font-bold bg-[#f2f4f5] border border-[#ebebeb] text-black px-2.5 py-1 rounded-full">
+                                {{ $subcat }}
+                            </span>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-2 pt-3 border-t border-[#ebebeb] flex items-center justify-between">
+                    <span class="text-[11px] font-bold text-[#4f4c4a]">Engineered in Gujarat</span>
+                    <a href="{{ route('products.category', $slug) }}" class="h-9 px-4 rounded-full bg-black hover:bg-[#332f2d] text-white text-[12px] font-bold inline-flex items-center justify-center transition-shop shadow-xs">
+                        Browse Range &rarr;
                     </a>
                 </div>
             </div>
             @endforeach
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Key Selling Points Section -->
-<section class="py-24 bg-white border-y border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-20">
-            <span class="text-xs uppercase font-extrabold tracking-widest text-brand-red">The Grewok Edge</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mt-3 mb-4">Engineered For Indian Homes</h2>
-            <p class="text-slate-500 text-sm">Every hinge, channel, and storage solution is built to deliver unmatched durability and peak mechanical performance.</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Feature 1 -->
-            <div class="flex gap-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-red-50 text-brand-red rounded-xl flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                </div>
-                <div>
-                    <h3 class="font-bold text-brand-navy mb-2 text-sm uppercase">10 Years Warranty</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Enjoy peace of mind. Our premium SS 304 products carry a 10-year replacement warranty against manufacturing defects.</p>
-                </div>
-            </div>
-            
-            <!-- Feature 2 -->
-            <div class="flex gap-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-blue-50 text-brand-navy rounded-xl flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <div>
-                    <h3 class="font-bold text-brand-navy mb-2 text-sm uppercase">Whisper Soft-Close</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Integrated liquid silicone dampers provide a smooth, silent self-closing action, preventing slamming.</p>
-                </div>
-            </div>
-            
-            <!-- Feature 3 -->
-            <div class="flex gap-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-slate-50 text-slate-700 rounded-xl flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                </div>
-                <div>
-                    <h3 class="font-bold text-brand-navy mb-2 text-sm uppercase">High Load Capacity</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Telescopic slides and storage pull-outs are engineered and tested to support load capacities up to 80 kg.</p>
-                </div>
-            </div>
-            
-            <!-- Feature 4 -->
-            <div class="flex gap-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                </div>
-                <div>
-                    <h3 class="font-bold text-brand-navy mb-2 text-sm uppercase">Made For Indian Homes</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Built from heavy-gauge virgin metals to resist salt, rust, and oil spray inside Indian modular kitchens.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Featured Products Section -->
-<section class="py-20 bg-brand-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row items-baseline justify-between mb-12">
+    <!-- ── 4. Signature Masterpieces (Featured Products Grid) ── -->
+    <section class="my-20">
+        <div class="flex items-center justify-between mb-6">
             <div>
-                <span class="text-xs uppercase font-extrabold tracking-widest text-brand-red">Signature Line</span>
-                <h2 class="text-3xl font-extrabold text-brand-navy mt-2">Engineered Masterpieces</h2>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#4f4c4a] block mb-1">Premier Engineering Line</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-black track-tight-20">Featured Masterpieces</h2>
             </div>
-            <a href="{{ route('products.all') }}" class="text-xs font-bold text-brand-red hover:text-brand-navy underline mt-2 sm:mt-0 transition-brand">View All Products &rarr;</a>
+            
+            <a href="{{ route('products.all') }}" class="w-9 h-9 rounded-full bg-white shadow-shop-sm border border-[#cccccc] flex items-center justify-center text-black hover:bg-[#f2f4f5] transition-shop" title="View all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+            </a>
         </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- 4-Column Card Grid of Product Image Tiles -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             @foreach($featuredProducts as $slug => $prod)
-            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-brand">
+            <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-3 flex flex-col justify-between hover-float transition-shop group">
                 <div>
-                    <div class="relative aspect-square bg-slate-50 overflow-hidden group">
-                        <img src="{{ $prod['image'] }}" alt="{{ $prod['name'] }}" class="w-full h-full object-cover group-hover:scale-105 transition-brand">
+                    <!-- 1:1 product image with 20px inner radius -->
+                    <div class="relative w-full aspect-square rounded-inner-shop bg-[#f2f4f5] border border-[#ebebeb] overflow-hidden">
+                        <img src="{{ $prod['image'] }}" alt="{{ $prod['name'] }}" class="w-full h-full object-cover group-hover:scale-105 transition-shop">
                         
-                        <div class="absolute top-3 left-3 bg-brand-navy text-white text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded">
+                        <!-- Subcategory Pill Overlay -->
+                        <span class="absolute top-2.5 left-2.5 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-sm">
                             {{ $prod['subcategory'] }}
-                        </div>
+                        </span>
                     </div>
-                    
-                    <div class="p-5">
-                        <h3 class="font-bold text-sm text-brand-navy truncate mb-1">
-                            {{ $prod['name'] }}
+
+                    <!-- Details beneath image -->
+                    <div class="pt-3 px-1">
+                        <h3 class="text-[15px] font-bold text-black track-tight-14 truncate mb-0.5">
+                            <a href="{{ route('products.show', $prod['slug']) }}" class="hover:text-[#5433eb] transition-shop">{{ $prod['name'] }}</a>
                         </h3>
-                        <p class="text-[11px] text-slate-500 line-clamp-2 leading-relaxed mb-4">
+                        
+                        <p class="text-[12px] text-[#4f4c4a] track-tight-12 line-clamp-1 mb-2 font-normal">
                             {{ $prod['tagline'] }}
                         </p>
-                        
+
+                        <!-- GW Code tag -->
                         @if(!empty($prod['sizes']))
-                        <div class="text-[10px] text-brand-gray-dark flex flex-wrap gap-1.5 mb-2">
-                            <span class="bg-slate-100 px-2 py-0.5 rounded font-bold uppercase tracking-wide">GW-Code</span>
-                            <span class="bg-slate-100 px-2 py-0.5 rounded">{{ $prod['sizes'][0]['code'] }}</span>
+                        <div class="text-[10px] text-[#4f4c4a] flex items-center gap-1.5 mb-2 font-bold">
+                            <span class="bg-[#f2f4f5] px-2 py-0.5 rounded-full border border-[#ebebeb]">Code: {{ $prod['sizes'][0]['code'] }}</span>
+                            <span>&bull;</span>
+                            <span>{{ count($prod['sizes']) }} Sizes Available</span>
                         </div>
                         @endif
+
+                        <!-- 5-star rating row -->
+                        <div class="flex items-center gap-1.5 text-[11px] text-[#333333] track-tight-9 mb-2 font-medium">
+                            <div class="flex text-amber-500 text-[12px]">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span>5.0 (42 reviews)</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="px-5 pb-5 pt-3 border-t border-slate-50 flex items-center justify-between">
-                    <span class="text-xs text-brand-red font-bold">
-                        @if(!empty($prod['sizes']))
-                            MRP: ₹{{ $prod['sizes'][0]['mrp'] }} - ₹{{ end($prod['sizes'])['mrp'] }}
-                        @else
-                            Contact for Price
-                        @endif
-                    </span>
-                    <a href="{{ route('products.show', $prod['slug']) }}" class="text-xs font-bold text-brand-navy hover:text-brand-red transition-brand">View Details &rarr;</a>
+
+                <!-- Footer with MRP & Link -->
+                <div class="px-1 pt-2.5 pb-1 border-t border-[#ebebeb] flex items-center justify-between">
+                    <div>
+                        <span class="text-[13px] font-bold text-black">
+                            @if(!empty($prod['sizes']))
+                                ₹{{ $prod['sizes'][0]['mrp'] }}
+                            @else
+                                Contact
+                            @endif
+                        </span>
+                    </div>
+
+                    <a href="{{ route('products.show', $prod['slug']) }}" 
+                       class="text-[13px] font-bold text-[#5433eb] hover:underline track-tight-12">
+                        Details &rarr;
+                    </a>
                 </div>
             </div>
             @endforeach
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Call to Action & QR Code Section -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-brand-navy via-brand-navy-dark to-slate-900 rounded-3xl text-white shadow-2xl p-8 lg:p-16 grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-            
-            <div class="lg:col-span-2">
-                <span class="text-xs uppercase font-extrabold tracking-widest text-brand-red">Direct Dealer & Builder Enquiries</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold mt-3 mb-6 leading-tight">Become a Grewok Dealer</h2>
-                <p class="text-slate-300 leading-relaxed mb-8 max-w-xl text-sm">
-                    Partner with India's fastest-growing furniture hardware brand. We provide flexible bulk ordering, rapid supply-chain fulfillment across 7 states, custom product branding support, and attractive margins for distribution networks.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="{{ route('contact') }}" class="bg-brand-red hover:bg-brand-red-dark text-white font-bold py-3.5 px-8 rounded-xl transition-brand text-xs uppercase tracking-wider">Become a Partner</a>
-                    <a href="https://wa.me/919999999999?text=Hello!%20I%20want%20to%20become%20a%20dealer%20for%20Grewok%20Hardware." target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold py-3.5 px-8 rounded-xl transition-brand text-xs uppercase tracking-wider">Chat on WhatsApp</a>
-                </div>
+    <!-- ── 5. 2-Column Hero-and-Grid Composition (Silence In Motion) ── -->
+    <section class="my-20">
+        <div class="flex items-center justify-between mb-6">
+            <div class="inline-flex items-center gap-2">
+                <h2 class="text-2xl font-bold text-black track-tight-20">Modular Kitchen & Wardrobe Systems</h2>
+                <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
             </div>
-            
-            <!-- Elegant QR Code Mockup in SVG -->
-            <div class="bg-white text-slate-800 rounded-2xl p-6 flex flex-col items-center shadow-2xl border border-white/10 max-w-[280px] mx-auto">
-                <div class="relative w-44 h-44 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center p-3">
-                    <!-- Geometric Grewok G in center of QR Mockup -->
-                    <div class="absolute w-8 h-8 bg-brand-navy rounded flex items-center justify-center shadow-md">
-                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.3 22 21.62 17.88 21.96 12.67H12V15.33H19.22C18.66 17.7 16.53 19.33 12 19.33C7.94 19.33 4.67 16.06 4.67 12C4.67 7.94 7.94 4.67 12 4.67C15.22 4.67 17.96 6.74 18.9 9.6H21.75C20.69 5.17 16.73 2 12 2Z" fill="currentColor"/><rect x="11" y="11" width="10" height="2.5" fill="#E31C25"/></svg>
-                    </div>
-                    
-                    <!-- Clean SVG QR code path representation -->
-                    <svg class="w-full h-full text-brand-navy" viewBox="0 0 100 100" fill="currentColor">
-                        <!-- Top-Left Corner Finder -->
-                        <path d="M0 0h30v30H0zM5 5v20h20V5zM10 10h10v10H10z"/>
-                        <!-- Top-Right Corner Finder -->
-                        <path d="M70 0h30v30H70zM75 5v20h20V5zM80 10h10v10H80z"/>
-                        <!-- Bottom-Left Corner Finder -->
-                        <path d="M0 70h30v30H0zM5 75v20h20V75zM10 80h10v10H10z"/>
-                        <!-- Random bits mock -->
-                        <path d="M35 5h10v10H35zM50 5h10v5H50zM65 10h5v15h-5zM35 20h15v5H35zM55 20h10v10H55zM15 35h5v20h-5zM25 35h10v5H25zM45 35h10v10H45zM60 35h10v5H60zM80 35h10v15H80zM35 50h5v15h-5zM55 50h15v5H55zM75 55h20v5H75zM45 65h5v15h-5zM60 65h10v10H60zM85 65h10v5H85zM35 80h5v15h-5zM50 80h25v5H50zM80 80h5v15h-5zM50 90h15v5H50z"/>
-                    </svg>
-                </div>
-                <div class="text-center mt-4">
-                    <span class="block text-[11px] font-bold text-brand-navy uppercase tracking-wider">Scan QR Code</span>
-                    <span class="block text-[9px] text-slate-500 mt-0.5">Download PDF Catalogue instantly to your smartphone.</span>
-                </div>
-            </div>
-            
         </div>
-    </div>
-</section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            
+            <!-- Left 60%: Product Type Hero Image -->
+            <div class="lg:col-span-7 relative bg-black rounded-card-shop overflow-hidden min-h-[380px] flex flex-col justify-between p-8 sm:p-10 text-white shadow-shop-card group border border-black">
+                <img src="/images/hero-kitchen.png" alt="Modern Kitchen Solutions" class="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:scale-102 transition-shop">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/60"></div>
+
+                <!-- Top Display overlay -->
+                <div class="relative z-10">
+                    <span class="inline-block text-[11px] font-bold tracking-wider uppercase text-white bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-3 border border-white/20">
+                        German Engineered Mechanics
+                    </span>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight drop-shadow-sm">
+                        Silence in Motion.
+                    </h3>
+                    <p class="text-[14px] text-[#cccccc] max-w-md mt-2 font-normal leading-relaxed">
+                        Soft-close pantry swing mechanics and double-wall slim drawer boxes designed to handle heavy Indian spices, cookware, and daily cycles.
+                    </p>
+                    <div class="flex items-center gap-2 mt-3 text-[13px] text-white font-medium">
+                        <div class="flex text-amber-400">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <span>5.0 Rating &bull; Over 50,000 Modular Installations</span>
+                    </div>
+                </div>
+
+                <!-- Bottom Strip with Mini Product Thumbnail Swatches -->
+                <div class="relative z-10 pt-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div>
+                        <span class="text-[12px] text-white uppercase tracking-wider block mb-2 font-bold">Compatible Systems</span>
+                        <div class="flex items-center gap-2">
+                            <div class="w-12 h-12 rounded-[12px] bg-white p-0.5 overflow-hidden border-2 border-white/40 shadow-sm" title="Drawer Channels">
+                                <img src="/images/products/drawer-channel.png" class="w-full h-full object-cover rounded-[10px]" alt="Drawer Channel">
+                            </div>
+                            <div class="w-12 h-12 rounded-[12px] bg-white p-0.5 overflow-hidden border-2 border-white/40 shadow-sm" title="Wardrobe Organizers">
+                                <img src="/images/products/wardrobe-organizer.png" class="w-full h-full object-cover rounded-[10px]" alt="Wardrobe Organizer">
+                            </div>
+                            <div class="w-12 h-12 rounded-[12px] bg-white p-0.5 overflow-hidden border-2 border-white/40 shadow-sm" title="Pantry Systems">
+                                <img src="/images/hero-kitchen.png" class="w-full h-full object-cover rounded-[10px]" alt="Kitchen System">
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('products.all') }}" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white text-black text-[14px] font-bold hover:bg-[#f2f4f5] transition-shop self-start sm:self-auto shadow-md">
+                        Explore Full Range &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right 40%: Brand Spotlight Cards -->
+            <div class="lg:col-span-5 flex flex-col justify-between gap-4">
+                
+                <!-- Spotlight 1 -->
+                <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-5 flex items-center gap-4 hover-float transition-shop">
+                    <div class="w-24 h-24 rounded-inner-shop bg-[#f2f4f5] border border-[#ebebeb] overflow-hidden flex-shrink-0">
+                        <img src="/images/products/drawer-channel.png" alt="Telescopic Channel" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <span class="text-[11px] font-bold text-[#4f4c4a] uppercase tracking-wider block">Drawer Hardware</span>
+                        <h4 class="text-[16px] font-bold text-black track-tight-16 truncate">Telescopic Channel Series</h4>
+                        <p class="text-[12px] text-[#4f4c4a] track-tight-12 mt-0.5 font-normal leading-normal">Heavy gauge cold-rolled steel tested for 80,000 cycles without play.</p>
+                        <div class="mt-2 text-[12px] font-bold text-[#5433eb]">10 Year Replacement Warranty</div>
+                    </div>
+                </div>
+
+                <!-- Spotlight 2 -->
+                <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-5 flex items-center gap-4 hover-float transition-shop">
+                    <div class="w-24 h-24 rounded-inner-shop bg-[#f2f4f5] border border-[#ebebeb] overflow-hidden flex-shrink-0">
+                        <img src="/images/products/wardrobe-organizer.png" alt="Wardrobe Solutions" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <span class="text-[11px] font-bold text-[#4f4c4a] uppercase tracking-wider block">Luxury Storage</span>
+                        <h4 class="text-[16px] font-bold text-black track-tight-16 truncate">Rotating Shoe & Accessory Rack</h4>
+                        <p class="text-[12px] text-[#4f4c4a] track-tight-12 mt-0.5 font-normal leading-normal">360-degree rotation with integrated soft-close liquid damper.</p>
+                        <div class="mt-2 text-[12px] font-bold text-[#5433eb]">Italian Aluminum Finish</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── 6. How It Works (First-Time Buyer Guide for Dealers, Architects & Homeowners) ── -->
+    <section class="my-20">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#4f4c4a] block mb-1">Simple & Direct Ordering</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-black track-tight-20">How To Procure Grewok Hardware</h2>
+            <p class="text-[14px] text-[#4f4c4a] mt-2 font-normal">Whether you are an architect specifying a project, a dealer stocking shelves, or a homeowner upgrading, we make procurement effortless.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Step 1 -->
+            <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-8 flex flex-col justify-between hover-float transition-shop">
+                <div>
+                    <span class="w-10 h-10 rounded-full bg-[#5433eb] text-white flex items-center justify-center font-bold text-[14px] mb-4 shadow-sm">
+                        01
+                    </span>
+                    <h3 class="text-[18px] font-bold text-black track-tight-16 mb-2">Browse & Select Codes</h3>
+                    <p class="text-[13px] text-[#4f4c4a] leading-relaxed font-normal">
+                        Explore our catalog of channels, hinges, and kitchen fittings. Each model has detailed load ratings, exact mm sizes, and official GW item codes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-8 flex flex-col justify-between hover-float transition-shop">
+                <div>
+                    <span class="w-10 h-10 rounded-full bg-[#5433eb] text-white flex items-center justify-center font-bold text-[14px] mb-4 shadow-sm">
+                        02
+                    </span>
+                    <h3 class="text-[18px] font-bold text-black track-tight-16 mb-2">Add to Enquiry Cart</h3>
+                    <p class="text-[13px] text-[#4f4c4a] leading-relaxed font-normal">
+                        Click "Add to Enquiry" on any item code. No upfront checkout required—compile your required bill of materials (BOM) in seconds.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-8 flex flex-col justify-between hover-float transition-shop">
+                <div>
+                    <span class="w-10 h-10 rounded-full bg-[#5433eb] text-white flex items-center justify-center font-bold text-[14px] mb-4 shadow-sm">
+                        03
+                    </span>
+                    <h3 class="text-[18px] font-bold text-black track-tight-16 mb-2">Direct Wholesale Rates</h3>
+                    <p class="text-[13px] text-[#4f4c4a] leading-relaxed font-normal">
+                        Our sales desk in Ahmedabad responds with project pricing, dealer discounts, and direct door delivery across 7 states.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 7. Architect, Builder & Dealership CTA Banner (Bordered & High Contrast) ── -->
+    <section class="my-20">
+        <div class="bg-[#ffffff] rounded-card-shop border border-[#ebebeb] shadow-shop-card p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="max-w-xl">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#5433eb] block mb-1">Direct Wholesale & Dealerships</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-black track-tight-20 mb-3">Partner with Grewok India</h2>
+                <p class="text-[14px] text-[#4f4c4a] track-tight-14 leading-relaxed font-normal mb-4">
+                    Join an expansive network of premier modular fabricators, architects, and hardware retail dealers across 7 states. We offer attractive margins, rapid supply fulfillment, and free physical hardware sample boxes for project evaluation.
+                </p>
+                <div class="flex items-center gap-4 text-[12px] text-black font-bold">
+                    <span>&check; 100% Virgin Metals</span>
+                    <span>&check; 10-Year Warranty</span>
+                    <span>&check; Direct Factory Dispatch</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0 w-full md:w-auto">
+                <a href="{{ route('contact', ['type' => 'dealer']) }}" 
+                   class="w-full sm:w-auto h-12 px-7 rounded-full bg-[#5433eb] text-white text-[14px] font-bold shadow-violet-submit hover:opacity-95 transition-shop inline-flex items-center justify-center">
+                    Become an Authorized Dealer
+                </a>
+                <a href="{{ route('catalogue') }}" 
+                   class="w-full sm:w-auto h-12 px-7 rounded-full bg-[#ffffff] border border-[#cccccc] text-black text-[14px] font-bold shadow-shop-sm hover:bg-[#f2f4f5] transition-shop inline-flex items-center justify-center">
+                    Download Full Catalogue
+                </a>
+            </div>
+        </div>
+    </section>
+
+</div>
 @endsection
