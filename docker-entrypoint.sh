@@ -1,28 +1,41 @@
 #!/bin/bash
 set -e
 
-# Create storage symlink if not already created
-php artisan storage:link || true
-
-# If SQLite is selected, ensure database file exists with correct permissions
-if [ "$DB_CONNECTION" = "sqlite" ]; then
-    mkdir -p /var/www/html/database
-    touch /var/www/html/database/database.sqlite
-    chown -R www-data:www-data /var/www/html/database
+# 1. Ensure .env exists in container
+if [ ! -f /var/www/html/.env ]; then
+    echo "Creating .env from .env.example..."
+    cp /var/www/html/.env.example /var/www/html/.env
 fi
 
-# Ensure storage & cache permissions
-chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# 2. Ensure APP_KEY exists
+if [ -z "$APP_KEY" ]; then
+    echo "APP_KEY is not set in environment. Generating key..."
+    php artisan key:generate --force
+fi
 
-# Production optimization caches
+# 3. Create public storage symlink
+php artisan storage:link || true
+
+# 4. Prepare SQLite database file and permissions
+mkdir -p /var/www/html/database
+touch /var/www/html/database/database.sqlite
+chown -R www-data:www-data /var/www/html/database
+chmod -R 775 /var/www/html/database
+chmod 664 /var/www/html/database/database.sqlite
+
+# 5. Ensure storage & bootstrap cache permissions
+chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# 6. Production optimization caches
 php artisan config:clear
 php artisan route:cache || true
 php artisan view:cache || true
 
-# Run database migrations and seed products
+# 7. Run database migrations and seed products
 echo "Running database migrations and seeders..."
-php artisan migrate --force --seed || echo "[NOTICE] Migration skipped or already up to date."
+php artisan migrate --force --seed || echo "[NOTICE] Migration completed or skipped."
 
-# Start Apache in foreground
+# 8. Start Apache in foreground
 echo "Starting Apache web server on port 80..."
 apache2-foreground
