@@ -110,4 +110,6 @@ Every time you want to run the project in the future:
 ---
 
 ## 📖 Detailed Documentation
-For deep troubleshooting, port conflicts, or step-by-step screenshots guide, please refer to **[SETUP_GUIDE.md](SETUP_GUIDE.md)**.
+- **Local XAMPP Setup & Troubleshooting Guide**: [SETUP_GUIDE.md](SETUP_GUIDE.md)
+- **Render Cloud Deployment Guide (Free Hosting)**: [RENDER_DEPLOY_GUIDE.md](RENDER_DEPLOY_GUIDE.md)
+
